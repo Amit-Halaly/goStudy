@@ -29,4 +29,7 @@
     <string name="home">Home</string>
     <string name="Courses">Courses</string>
     <string name="friends">Friends</string>
+    <string name="add_course">Add Course</string>
+    <string name="course_name">Course Name</string>
+    <string name="tasks_left">3 tasks left</string>
 </resources>
