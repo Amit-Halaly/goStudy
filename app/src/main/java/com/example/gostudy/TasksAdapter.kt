@@ -9,10 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class TasksAdapter(
-    private val tasks: List<Task>
+    private val tasks: MutableList<Task>,
+    private val onTaskToggle: (position: Int, isChecked: Boolean) -> Unit
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
-    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cbTask: CheckBox = itemView.findViewById(R.id.cbTask)
         val tvTaskName: TextView = itemView.findViewById(R.id.tvTaskName)
     }
@@ -25,8 +26,15 @@ class TasksAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val item = tasks[position]
+
+        holder.cbTask.setOnCheckedChangeListener(null)
+
         holder.tvTaskName.text = item.name
         holder.cbTask.isChecked = item.isDone
+
+        holder.cbTask.setOnCheckedChangeListener { _, isChecked ->
+            onTaskToggle(holder.adapterPosition, isChecked)
+        }
 
         if (item.isDone) {
             holder.tvTaskName.paintFlags =
@@ -36,6 +44,7 @@ class TasksAdapter(
                 holder.tvTaskName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
     }
+
 
     override fun getItemCount() = tasks.size
 }

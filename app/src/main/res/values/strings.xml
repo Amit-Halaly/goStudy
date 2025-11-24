@@ -34,4 +34,6 @@
     <string name="tasks_left">3 tasks left</string>
     <string name="total_tasks">total tasks</string>
     <string name="task_name">Task name</string>
+    <string name="summary">0 of 0 tasks done (0%)</string>
+    <string name="add_task">Add Task</string>
 </resources>
