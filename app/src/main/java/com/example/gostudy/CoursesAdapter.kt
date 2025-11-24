@@ -29,7 +29,7 @@ class CoursesAdapter(
         val item = courseList[position]
         holder.tvName.text = item.name
         holder.tvTasks.text = "${item.tasksLeft} tasks left"
-        holder.progress.progress = item.progress
+        holder.progress.progress = item.progressPercent
     }
 
     override fun getItemCount() = courseList.size
