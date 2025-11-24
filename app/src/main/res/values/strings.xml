@@ -6,4 +6,9 @@
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Don\'t have an account? Sign up</string>
+    <string name="return_to_login">Already have an account? Login</string>
+    <string name="create_account">Create account</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="full_name">Full name</string>
+    <string name="join_gostudy">Join GoStudy and track your learning.</string>
 </resources>
