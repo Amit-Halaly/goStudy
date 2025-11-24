@@ -33,4 +33,5 @@
     <string name="course_name">Course Name</string>
     <string name="tasks_left">3 tasks left</string>
     <string name="total_tasks">total tasks</string>
+    <string name="task_name">Task name</string>
 </resources>

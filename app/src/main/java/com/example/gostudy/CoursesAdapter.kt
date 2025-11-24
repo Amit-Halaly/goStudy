@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CoursesAdapter(
-    private val courseList: List<Course>
+    private val courseList: List<Course>,
+    private val onCourseClick: (Course) -> Unit
 ) : RecyclerView.Adapter<CoursesAdapter.CourseViewHolder>() {
 
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,6 +31,10 @@ class CoursesAdapter(
         holder.tvName.text = item.name
         holder.tvTasks.text = "${item.tasksLeft} tasks left"
         holder.progress.progress = item.progressPercent
+
+        holder.itemView.setOnClickListener {
+            onCourseClick(item)
+        }
     }
 
     override fun getItemCount() = courseList.size

@@ -48,7 +48,9 @@ class CoursesFragment : Fragment() {
         courseList.add(Course("Linear Algebra", totalTasks = 5, completedTasks = 4))
 
 
-        rvCourses.adapter = CoursesAdapter(courseList)
+        rvCourses.adapter = CoursesAdapter(courseList) { selectedCourse ->
+            openCourseDetails(selectedCourse)
+        }
 
     }
 
@@ -92,6 +94,19 @@ class CoursesFragment : Fragment() {
             .create()
 
         dialog.show()
+    }
+
+    private fun openCourseDetails(course: Course) {
+        val fragment = CourseDetailsFragment.newInstance(
+            course.name,
+            course.totalTasks,
+            course.completedTasks
+        )
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)   // מאפשר לחזור אחורה ל-Courses
+            .commit()
     }
 
 
