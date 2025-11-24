@@ -26,4 +26,7 @@
     <string name="progress_2">Progress: 45% · 3 tasks left</string>
     <string name="course_3">Linear Algebra</string>
     <string name="progress_3">Progress: 90% · 1 task left</string>
+    <string name="home">Home</string>
+    <string name="Courses">Courses</string>
+    <string name="friends">Friends</string>
 </resources>

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Aps>
+	<Group>
+		<Page Width="600" Height="600" PaperTray="0">
+			<Canvas>
+				<Canvas>
+					<Clip>
+						<Path FillMode="Winding">
+							<PathFigure IsClosed="True">
+								<PolyLine LineColor="#FF000000">
+									<Point X="0" Y="600" />
+									<Point X="0" Y="0" />
+								</PolyLine>
+								<PolyLine LineColor="#FF000000">
+									<Point X="0" Y="0" />
+									<Point X="600" Y="0" />
+								</PolyLine>
+								<PolyLine LineColor="#FF000000">
+									<Point X="600" Y="0" />
+									<Point X="600" Y="600" />
+								</PolyLine>
+								<PolyLine LineColor="#FF000000">
+									<Point X="600" Y="600" />
+									<Point X="0" Y="600" />
+								</PolyLine>
+							</PathFigure>
+						</Path>
+					</Clip>
+					<Path FillMode="Alternate" RenderTransform="1 0 0 -1 0 600">
+						<Brush>
+							<SolidBrush Color="#FF000000" />
+						</Brush>
+						<PathFigure IsClosed="True">
+							<PolyLine LineColor="#FF000000">
+								<Point X="337.5" Y="225" />
+								<Point X="337.5" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="337.5" Y="225" />
+								<Point X="450" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="450" Y="225" />
+								<Point X="450" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="450" Y="225" />
+								<Point X="450" Y="112.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="450" Y="112.5" />
+								<Point X="450" Y="112.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="450" Y="112.5" />
+								<Point X="337.5" Y="112.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="337.5" Y="112.5" />
+								<Point X="337.5" Y="112.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="337.5" Y="112.5" />
+								<Point X="337.5" Y="225" />
+							</PolyLine>
+						</PathFigure>
+						<PathFigure IsClosed="True">
+							<PolyLine LineColor="#FF000000">
+								<Point X="300" Y="600" />
+								<Point X="300" Y="600" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="300" Y="600" />
+								<Point X="0" Y="375" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="0" Y="375" />
+								<Point X="0" Y="375" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="0" Y="375" />
+								<Point X="0" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="0" Y="300" />
+								<Point X="0" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="0" Y="300" />
+								<Point X="37.5" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="37.5" Y="300" />
+								<Point X="37.5" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="37.5" Y="300" />
+								<Point X="37.5" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="37.5" Y="37.5" />
+								<Point X="37.5" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="37.5" Y="37.5" />
+								<Point X="150" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="150" Y="37.5" />
+								<Point X="150" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="150" Y="37.5" />
+								<Point X="150" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="150" Y="225" />
+								<Point X="150" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="150" Y="225" />
+								<Point X="262.5" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="262.5" Y="225" />
+								<Point X="262.5" Y="225" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="262.5" Y="225" />
+								<Point X="262.5" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="262.5" Y="37.5" />
+								<Point X="262.5" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="262.5" Y="37.5" />
+								<Point X="562.5" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="562.5" Y="37.5" />
+								<Point X="562.5" Y="37.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="562.5" Y="37.5" />
+								<Point X="562.5" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="562.5" Y="300" />
+								<Point X="562.5" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="562.5" Y="300" />
+								<Point X="600" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="600" Y="300" />
+								<Point X="600" Y="300" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="600" Y="300" />
+								<Point X="600" Y="375" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="600" Y="375" />
+								<Point X="600" Y="375" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="600" Y="375" />
+								<Point X="525" Y="431.25" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="525" Y="431.25" />
+								<Point X="525" Y="431.25" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="525" Y="431.25" />
+								<Point X="525" Y="562.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="525" Y="562.5" />
+								<Point X="525" Y="562.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="525" Y="562.5" />
+								<Point X="412.5" Y="562.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="412.5" Y="562.5" />
+								<Point X="412.5" Y="562.5" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="412.5" Y="562.5" />
+								<Point X="412.5" Y="515.625" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="412.5" Y="515.625" />
+								<Point X="412.5" Y="515.625" />
+							</PolyLine>
+							<PolyLine LineColor="#FF000000">
+								<Point X="412.5" Y="515.625" />
+								<Point X="300" Y="600" />
+							</PolyLine>
+						</PathFigure>
+					</Path>
+				</Canvas>
+			</Canvas>
+		</Page>
+	</Group>
+</Aps>
