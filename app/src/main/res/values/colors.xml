@@ -5,4 +5,5 @@
     <color name="Background_color">#D6EAFF</color>
     <color name="Dark_blue">#0D47A1</color>
     <color name="Light_blue">#2196F3</color>
+    <color name="text_color">#555555</color>
 </resources>

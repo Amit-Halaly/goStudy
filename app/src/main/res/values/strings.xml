@@ -11,4 +11,19 @@
     <string name="confirm_password">Confirm password</string>
     <string name="full_name">Full name</string>
     <string name="join_gostudy">Join GoStudy and track your learning.</string>
+    <string name="main_title">Hi, Student 👋</string>
+    <string name="learning_overview">Here’s your learning overview for today.</string>
+    <string name="gpa">GPA</string>
+    <string name="gpa_value">87.4</string>
+    <string name="next_task">Next task</string>
+    <string name="task">Data Structures HW – Tomorrow</string>
+    <string name="study_time">Study time today</string>
+    <string name="time">1h 30m</string>
+    <string name="courses">My courses</string>
+    <string name="course_1">Operating Systems</string>
+    <string name="progress_1">Progress: 70% · 2 tasks left</string>
+    <string name="course_2">Mobile Development</string>
+    <string name="progress_2">Progress: 45% · 3 tasks left</string>
+    <string name="course_3">Linear Algebra</string>
+    <string name="progress_3">Progress: 90% · 1 task left</string>
 </resources>
