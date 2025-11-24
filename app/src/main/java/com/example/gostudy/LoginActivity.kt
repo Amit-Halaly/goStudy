@@ -34,7 +34,8 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener { handleLogin() }
 
         tvSignup.setOnClickListener {
-            Toast.makeText(this, "Signup screen – coming soon", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
         }
     }
 
