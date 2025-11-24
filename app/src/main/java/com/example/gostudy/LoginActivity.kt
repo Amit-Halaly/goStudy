@@ -6,32 +6,35 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+
 
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var tvSignup: TextView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+
+        auth = FirebaseAuth.getInstance()
+
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
         tvSignup = findViewById(R.id.tvSignup)
 
-        btnLogin.setOnClickListener {
-            handleLogin()
-        }
+        btnLogin.setOnClickListener { handleLogin() }
 
         tvSignup.setOnClickListener {
-            Toast.makeText(this, "Signup screen coming soon", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Signup screen – coming soon", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -43,19 +46,28 @@ class LoginActivity : AppCompatActivity() {
             etEmail.error = "Email is required"
             return
         }
-
         if (password.isEmpty()) {
             etPassword.error = "Password is required"
             return
         }
 
-        Toast.makeText(this, "Trying to login as $email", Toast.LENGTH_SHORT).show()
-
-        goToHome()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    goToHome()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Login failed: ${task.exception?.localizedMessage ?: "Unknown error"}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
     }
 
-    private fun goToHome() { //Replace with firebase Auto
+    private fun goToHome() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
-    }}
+    }
+}
