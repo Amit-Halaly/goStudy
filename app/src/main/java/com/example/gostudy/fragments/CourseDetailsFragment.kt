@@ -19,9 +19,11 @@ import com.example.gostudy.adapters.TasksAdapter
 import androidx.appcompat.app.AlertDialog
 import com.example.gostudy.CoursesRepository
 import com.example.gostudy.models.Course
+import com.google.firebase.auth.FirebaseAuth
 
 
 class CourseDetailsFragment : Fragment() {
+    private lateinit var auth: FirebaseAuth
 
     private var courseIndex: Int = -1
     private lateinit var course: Course
@@ -43,9 +45,12 @@ class CourseDetailsFragment : Fragment() {
             courseIndex = it.getInt(ARG_COURSE_INDEX)
         }
 
+        auth = FirebaseAuth.getInstance()
+
         course = CoursesRepository.courses[courseIndex]
         completedCount = course.completedTasks
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +59,7 @@ class CourseDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_course_details, container, false)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -72,17 +78,34 @@ class CourseDetailsFragment : Fragment() {
             showAddTaskDialog()
         }
 
-        updateProgressUI()
+        val uid = auth.currentUser?.uid
+        if (uid != null) {
+            CoursesRepository.loadTasksForCourse(uid, course) {
+                rvTasks.adapter?.notifyDataSetChanged()
+                updateProgressUI()
+            }
+        } else {
+            updateProgressUI()
+        }
     }
+
 
     private fun onTaskToggled(position: Int, isChecked: Boolean) {
         if (position < 0 || position >= tasksList.size) return
 
-        tasksList[position].isDone = isChecked
+        val uid = auth.currentUser?.uid
+        if (uid == null) {
+            Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        CoursesRepository.updateTaskStatus(uid, course, position, isChecked)
+
         completedCount = course.completedTasks
         updateProgressUI()
         rvTasks.adapter?.notifyItemChanged(position)
     }
+
 
     @SuppressLint("SetTextI18n")
     private fun updateProgressUI() {
@@ -111,17 +134,23 @@ class CourseDetailsFragment : Fragment() {
                     return@setPositiveButton
                 }
 
-                val newTask = Task(name = name, isDone = false)
-                tasksList.add(newTask)
+                val uid = auth.currentUser?.uid
+                if (uid == null) {
+                    Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+                    return@setPositiveButton
+                }
 
-                rvTasks.adapter?.notifyItemInserted(tasksList.size - 1)
-                updateProgressUI()
+                CoursesRepository.addTaskToCourse(uid, course, name) {
+                    rvTasks.adapter?.notifyItemInserted(tasksList.size - 1)
+                    updateProgressUI()
+                }
             }
             .setNegativeButton("Cancel", null)
             .create()
 
         dialog.show()
     }
+
 
     companion object {
         private const val ARG_COURSE_INDEX = "arg_course_index"
