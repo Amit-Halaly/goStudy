@@ -1,10 +1,9 @@
 package com.example.gostudy.models
 
-import com.example.gostudy.models.Task
-
 data class Course(
     val name: String,
-    val tasks: MutableList<Task> = mutableListOf()
+    val tasks: MutableList<Task> = mutableListOf(),
+    val id: String = ""
 ) {
     val totalTasks: Int
         get() = tasks.size

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gostudy.CoursesRepository
 import com.example.gostudy.R
+import com.google.firebase.auth.FirebaseAuth
 
 class CoursesFragment : Fragment() {
 
@@ -36,6 +37,7 @@ class CoursesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_courses, container, false)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -45,6 +47,13 @@ class CoursesFragment : Fragment() {
         rvCourses.layoutManager = LinearLayoutManager(requireContext())
         rvCourses.adapter = CoursesAdapter(courseList) { selectedCourse ->
             openCourseDetails(selectedCourse)
+        }
+
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            CoursesRepository.loadCoursesForUser(uid) {
+                rvCourses.adapter?.notifyDataSetChanged()
+            }
         }
 
         btnAdd.setOnClickListener {
@@ -82,19 +91,22 @@ class CoursesFragment : Fragment() {
                     return@setPositiveButton
                 }
 
-                val newCourse = Course(
-                    name = name,
-                    tasks = mutableListOf()
-                )
+                val uid = FirebaseAuth.getInstance().currentUser?.uid
+                if (uid == null) {
+                    Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+                    return@setPositiveButton
+                }
 
-                courseList.add(newCourse)
-                rvCourses.adapter?.notifyItemInserted(courseList.size - 1)
+                CoursesRepository.addCourse(uid, name) {
+                    rvCourses.adapter?.notifyItemInserted(courseList.size - 1)
+                }
             }
             .setNegativeButton("Cancel", null)
             .create()
 
         dialog.show()
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {

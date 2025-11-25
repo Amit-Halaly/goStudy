@@ -1,32 +1,64 @@
 package com.example.gostudy
 
+import android.annotation.SuppressLint
 import com.example.gostudy.models.Course
-import com.example.gostudy.models.Task
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 object CoursesRepository {
 
-    val courses: MutableList<Course> = mutableListOf(
-        Course(
-            name = "Operating Systems",
-            tasks = mutableListOf(
-                Task("HW 1", true),
-                Task("HW 2", false),
-                Task("Exam practice", false)
-            )
-        ),
-        Course(
-            name = "Mobile Development",
-            tasks = mutableListOf(
-                Task("Watch lecture 1", true),
-                Task("Finish project skeleton", false)
-            )
-        ),
-        Course(
-            name = "Linear Algebra",
-            tasks = mutableListOf(
-                Task("Solve tutorial 3", true),
-                Task("Study for quiz", false)
-            )
+    @SuppressLint("StaticFieldLeak")
+    private val db = FirebaseFirestore.getInstance()
+
+    val courses: MutableList<Course> = mutableListOf()
+
+    fun loadCoursesForUser(uid: String, onFinished: () -> Unit) {
+        courses.clear()
+
+        db.collection("users")
+            .document(uid)
+            .collection("courses")
+            .get()
+            .addOnSuccessListener { result ->
+                for (doc in result) {
+                    val name = doc.getString("name") ?: continue
+                    val id = doc.id
+
+                    val course = Course(
+                        name = name,
+                        tasks = mutableListOf(),
+                        id = id
+                    )
+                    courses.add(course)
+                }
+
+                onFinished()
+            }
+            .addOnFailureListener {
+                onFinished()
+            }
+    }
+
+    fun addCourse(uid: String, name: String, onFinished: () -> Unit) {
+        val data = hashMapOf(
+            "name" to name
         )
-    )
+
+        db.collection("users")
+            .document(uid)
+            .collection("courses")
+            .add(data)
+            .addOnSuccessListener { documentRef ->
+                val newCourse = Course(
+                    name = name,
+                    tasks = mutableListOf(),
+                    id = documentRef.id
+                )
+                courses.add(newCourse)
+                onFinished()
+            }
+            .addOnFailureListener {
+                onFinished()
+            }
+    }
 }
