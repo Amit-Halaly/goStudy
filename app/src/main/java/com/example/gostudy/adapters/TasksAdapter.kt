@@ -1,4 +1,4 @@
-package com.example.gostudy
+package com.example.gostudy.adapters
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gostudy.R
+import com.example.gostudy.models.Task
 
 class TasksAdapter(
     private val tasks: MutableList<Task>,
@@ -45,6 +47,5 @@ class TasksAdapter(
         }
     }
 
-
-    override fun getItemCount() = tasks.size
+    override fun getItemCount(): Int = tasks.size
 }

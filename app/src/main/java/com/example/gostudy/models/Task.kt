@@ -1,4 +1,4 @@
-package com.example.gostudy
+package com.example.gostudy.models
 
 data class Task(
     val name: String,

@@ -1,4 +1,4 @@
-package com.example.gostudy
+package com.example.gostudy.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gostudy.R
+import com.example.gostudy.models.Course
 
 class CoursesAdapter(
     private val courseList: List<Course>,
@@ -28,6 +30,7 @@ class CoursesAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val item = courseList[position]
+
         holder.tvName.text = item.name
         holder.tvTasks.text = "${item.tasksLeft} tasks left"
         holder.progress.progress = item.progressPercent
