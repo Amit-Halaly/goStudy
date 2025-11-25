@@ -33,12 +33,27 @@ object CoursesRepository {
                     courses.add(course)
                 }
 
-                onFinished()
+                if (courses.isEmpty()) {
+                    onFinished()
+                    return@addOnSuccessListener
+                }
+
+                var remaining = courses.size
+
+                for (course in courses) {
+                    loadTasksForCourse(uid, course) {
+                        remaining--
+                        if (remaining == 0) {
+                            onFinished()
+                        }
+                    }
+                }
             }
             .addOnFailureListener {
                 onFinished()
             }
     }
+
 
     fun addCourse(uid: String, name: String, onFinished: () -> Unit) {
         val data = hashMapOf(

@@ -33,6 +33,7 @@ class CoursesAdapter(
 
         holder.tvName.text = item.name
         holder.tvTasks.text = "${item.tasksLeft} tasks left"
+        holder.progress.max = 100
         holder.progress.progress = item.progressPercent
 
         holder.itemView.setOnClickListener {

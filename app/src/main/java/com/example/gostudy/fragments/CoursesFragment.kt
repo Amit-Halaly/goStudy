@@ -50,11 +50,12 @@ class CoursesFragment : Fragment() {
         }
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        if (uid != null) {
+        if (uid != null && courseList.isEmpty()) {
             CoursesRepository.loadCoursesForUser(uid) {
                 rvCourses.adapter?.notifyDataSetChanged()
             }
         }
+
 
         btnAdd.setOnClickListener {
             showAddCourseDialog()
@@ -106,7 +107,6 @@ class CoursesFragment : Fragment() {
 
         dialog.show()
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
