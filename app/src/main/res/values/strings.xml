@@ -45,4 +45,5 @@
     <string name="see_your_friend_s_study_progress">See your friend\'s study progress</string>
     <string name="divider2">--</string>
     <string name="divider1">-</string>
+    <string name="delete_course">Delete Course</string>
 </resources>

@@ -77,6 +77,27 @@ object CoursesRepository {
             }
     }
 
+    fun deleteCourse(uid: String, course: Course, onComplete: (Boolean) -> Unit) {
+        val courseId = course.id
+        if (courseId.isEmpty()) {
+            onComplete(false)
+            return
+        }
+
+        db.collection("users")
+            .document(uid)
+            .collection("courses")
+            .document(courseId)
+            .delete()
+            .addOnSuccessListener {
+                onComplete(true)
+            }
+            .addOnFailureListener {
+                onComplete(false)
+            }
+    }
+
+
     fun loadTasksForCourse(uid: String, course: Course, onFinished: () -> Unit) {
         course.tasks.clear()
 

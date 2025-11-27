@@ -63,6 +63,12 @@ class CourseDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val btnDelete = view.findViewById<Button>(R.id.btnDeleteCourse)
+
+        btnDelete.setOnClickListener {
+            confirmDeleteCourse()
+        }
+
         tvTitle = view.findViewById(R.id.tvCourseTitle)
         tvTasksSummary = view.findViewById(R.id.tvTasksSummary)
         progressBar = view.findViewById(R.id.progressCourseDetail)
@@ -150,6 +156,34 @@ class CourseDetailsFragment : Fragment() {
 
         dialog.show()
     }
+
+    private fun confirmDeleteCourse() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Course")
+            .setMessage("Are you sure you want to delete this course?\nThis action cannot be undone.")
+            .setPositiveButton("Delete") { _, _ ->
+                deleteCourse()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteCourse() {
+        val uid = auth.currentUser?.uid ?: return
+
+        CoursesRepository.deleteCourse(uid, course) { success ->
+            if (success) {
+                Toast.makeText(requireContext(), "Course deleted", Toast.LENGTH_SHORT).show()
+
+                CoursesRepository.courses.removeAt(courseIndex)
+
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            } else {
+                Toast.makeText(requireContext(), "Failed to delete course", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
 
     companion object {
