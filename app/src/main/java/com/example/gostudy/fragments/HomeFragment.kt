@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.gostudy.repositories.CoursesRepository
 import com.example.gostudy.R
@@ -24,6 +25,18 @@ class HomeFragment : Fragment() {
     private lateinit var tvNextTask: TextView
     private lateinit var tvStudyTime: TextView
 
+    // כרטיסי הקורסים למטה
+    private lateinit var cardCourse1: CardView
+    private lateinit var cardCourse2: CardView
+    private lateinit var cardCourse3: CardView
+
+    private lateinit var tvCourse1Name: TextView
+    private lateinit var tvCourse1Progress: TextView
+    private lateinit var tvCourse2Name: TextView
+    private lateinit var tvCourse2Progress: TextView
+    private lateinit var tvCourse3Name: TextView
+    private lateinit var tvCourse3Progress: TextView
+
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
@@ -33,7 +46,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // זה ה-XML ששלחת
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -46,12 +58,23 @@ class HomeFragment : Fragment() {
         tvNextTask = view.findViewById(R.id.tvNextTask)
         tvStudyTime = view.findViewById(R.id.tvStudyTime)
 
+        cardCourse1 = view.findViewById(R.id.cardCourse1)
+        cardCourse2 = view.findViewById(R.id.cardCourse2)
+        cardCourse3 = view.findViewById(R.id.cardCourse3)
+
+        tvCourse1Name = view.findViewById(R.id.tvCourse1Name)
+        tvCourse1Progress = view.findViewById(R.id.tvCourse1Progress)
+        tvCourse2Name = view.findViewById(R.id.tvCourse2Name)
+        tvCourse2Progress = view.findViewById(R.id.tvCourse2Progress)
+        tvCourse3Name = view.findViewById(R.id.tvCourse3Name)
+        tvCourse3Progress = view.findViewById(R.id.tvCourse3Progress)
+
+        // לחיצה על ה-GPA – שינוי ושמירה ב-Firestore
         tvGpaValue.setOnClickListener {
             showEditGpaDialog()
         }
 
         loadGpa()
-
         updateHomeFromCourses()
 
         val uid = auth.currentUser?.uid
@@ -72,8 +95,12 @@ class HomeFragment : Fragment() {
         val courses = CoursesRepository.courses
 
         if (courses.isEmpty()) {
-            tvNextTask.text =  "No tasks yet"
+            tvNextTask.text = "No tasks yet"
             tvStudyTime.text = "No study stats yet. Add your first course!"
+
+            cardCourse1.visibility = View.GONE
+            cardCourse2.visibility = View.GONE
+            cardCourse3.visibility = View.GONE
             return
         }
 
@@ -102,6 +129,33 @@ class HomeFragment : Fragment() {
         }
 
         tvStudyTime.text = "Courses: $totalCourses • Tasks: $totalTasks • Done: $completedTasks"
+
+        bindCourseCard(0, courses, cardCourse1, tvCourse1Name, tvCourse1Progress)
+        bindCourseCard(1, courses, cardCourse2, tvCourse2Name, tvCourse2Progress)
+        bindCourseCard(2, courses, cardCourse3, tvCourse3Name, tvCourse3Progress)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun bindCourseCard(
+        index: Int,
+        courses: List<com.example.gostudy.models.Course>,
+        card: CardView,
+        tvName: TextView,
+        tvProgress: TextView
+    ) {
+        if (index >= courses.size) {
+            card.visibility = View.GONE
+            return
+        }
+
+        val course = courses[index]
+        card.visibility = View.VISIBLE
+
+        val left = course.tasksLeft
+        val percent = course.progressPercent
+
+        tvName.text = course.name
+        tvProgress.text = "Progress: $percent% • tasks Left: $left"
     }
 
     @SuppressLint("DefaultLocale")
@@ -120,7 +174,6 @@ class HomeFragment : Fragment() {
                 tvGpaValue.text = getString(R.string.gpa_value)
             }
     }
-
 
     @SuppressLint("DefaultLocale")
     private fun showEditGpaDialog() {
