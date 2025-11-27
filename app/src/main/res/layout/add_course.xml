@@ -13,12 +13,4 @@
         android:inputType="text"
         android:layout_marginBottom="12dp" />
 
-    <EditText
-        android:id="@+id/etTotalTasks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/total_tasks"
-        android:inputType="number"
-        android:layout_marginBottom="12dp" />
-
 </LinearLayout>
