@@ -69,7 +69,6 @@ class HomeFragment : Fragment() {
         tvCourse3Name = view.findViewById(R.id.tvCourse3Name)
         tvCourse3Progress = view.findViewById(R.id.tvCourse3Progress)
 
-        // לחיצה על ה-GPA – שינוי ושמירה ב-Firestore
         tvGpaValue.setOnClickListener {
             showEditGpaDialog()
         }

@@ -130,8 +130,8 @@ class UserCoursesFragment : Fragment() {
             targetName
         )
 
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.userProfileContainer, fragment)
             .addToBackStack(null)
             .commit()
     }

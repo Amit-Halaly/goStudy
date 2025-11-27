@@ -1,6 +1,7 @@
 package com.example.gostudy.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gostudy.R
+import com.example.gostudy.UserProfileActivity
 import com.example.gostudy.repositories.UsersRepository
 import com.example.gostudy.adapters.UsersAdapter
 import com.example.gostudy.models.AppUser
@@ -36,7 +38,7 @@ class UsersFragment : Fragment() {
 
         rvUsers.layoutManager = LinearLayoutManager(requireContext())
         rvUsers.adapter = UsersAdapter(usersList) { user ->
-            openUserCourses(user)
+            openUserProfile(user)
         }
 
         val currentUid = FirebaseAuth.getInstance().currentUser?.uid
@@ -48,16 +50,12 @@ class UsersFragment : Fragment() {
         }
     }
 
-    private fun openUserCourses(user: AppUser) {
-        val fragment = UserCoursesFragment.newInstance(
-            user.uid,
-            user.displayName,
-            user.photoUrl
-        )
-
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .addToBackStack(null)
-            .commit()
+    private fun openUserProfile(user: AppUser) {
+        val intent = Intent(requireContext(), UserProfileActivity::class.java)
+        intent.putExtra("friendUid", user.uid)
+        intent.putExtra("friendName", user.displayName)
+        intent.putExtra("friendPhotoUrl", user.photoUrl)
+        startActivity(intent)
     }
+
 }

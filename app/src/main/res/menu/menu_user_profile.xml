@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_user_home"
+        android:title="@string/home"
+        android:icon="@android:drawable/ic_menu_info_details" />
+
+    <item
+        android:id="@+id/nav_user_courses"
+        android:title="@string/Courses"
+        android:icon="@android:drawable/ic_menu_agenda" />
+</menu>
