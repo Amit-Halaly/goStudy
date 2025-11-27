@@ -16,9 +16,9 @@
     <string name="gpa">GPA</string>
     <string name="gpa_value">87.4</string>
     <string name="next_task">Next task</string>
-    <string name="task">Data Structures HW – Tomorrow</string>
-    <string name="study_time">Study time today</string>
-    <string name="time">1h 30m</string>
+    <string name="task">Data Structures HW </string>
+    <string name="study_summary">Summary</string>
+    <string name="data">student data</string>
     <string name="courses">My courses</string>
     <string name="course_1">Operating Systems</string>
     <string name="progress_1">Progress: 70% · 2 tasks left</string>
@@ -28,7 +28,6 @@
     <string name="progress_3">Progress: 90% · 1 task left</string>
     <string name="home">Home</string>
     <string name="Courses">Courses</string>
-    <string name="friends">Friends</string>
     <string name="add_course">Add Course</string>
     <string name="course_name">Course Name</string>
     <string name="tasks_left">3 tasks left</string>

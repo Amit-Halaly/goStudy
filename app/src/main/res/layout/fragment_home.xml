@@ -115,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/study_time"
+                    android:text="@string/study_summary"
                     android:textSize="14sp"
                     android:textColor="@color/text_color" />
 
@@ -123,7 +123,7 @@
                     android:id="@+id/tvStudyTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/time"
+                    android:text="@string/data"
                     android:textSize="18sp"
                     android:textColor="@color/black" />
             </LinearLayout>
