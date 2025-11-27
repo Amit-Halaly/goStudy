@@ -41,4 +41,5 @@
     <string name="user_s_courses">User\'s courses</string>
     <string name="_0_of_0_tasks_done_0">0 of 0 tasks done (0%)</string>
     <string name="user_course_name">User - Course Name</string>
+    <string name="profile_image_url">Profile image URL (optional)</string>
 </resources>
