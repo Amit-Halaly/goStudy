@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gostudy.CoursesRepository
+import com.example.gostudy.repositories.CoursesRepository
 import com.example.gostudy.R
 import com.google.firebase.auth.FirebaseAuth
 

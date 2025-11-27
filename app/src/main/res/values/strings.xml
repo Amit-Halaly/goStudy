@@ -36,4 +36,9 @@
     <string name="task_name">Task name</string>
     <string name="summary">0 of 0 tasks done (0%)</string>
     <string name="add_task">Add Task</string>
+    <string name="user_name">User Name</string>
+    <string name="users">Users</string>
+    <string name="user_s_courses">User\'s courses</string>
+    <string name="_0_of_0_tasks_done_0">0 of 0 tasks done (0%)</string>
+    <string name="user_course_name">User - Course Name</string>
 </resources>

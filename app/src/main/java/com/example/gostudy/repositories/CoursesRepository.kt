@@ -1,10 +1,9 @@
-package com.example.gostudy
+package com.example.gostudy.repositories
 
 import android.annotation.SuppressLint
 import com.example.gostudy.models.Course
-import com.google.firebase.firestore.FirebaseFirestore
 import com.example.gostudy.models.Task
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 object CoursesRepository {
 

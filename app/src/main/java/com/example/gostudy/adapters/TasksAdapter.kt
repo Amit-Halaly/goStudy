@@ -1,6 +1,5 @@
 package com.example.gostudy.adapters
 
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,14 @@ import com.example.gostudy.R
 import com.example.gostudy.models.Task
 
 class TasksAdapter(
-    private val tasks: MutableList<Task>,
-    private val onTaskToggle: (position: Int, isChecked: Boolean) -> Unit
+    private val tasks: List<Task>,
+    private val onTaskToggled: (Int, Boolean) -> Unit,
+    private val isReadOnly: Boolean = false
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cbTask: CheckBox = itemView.findViewById(R.id.cbTask)
-        val tvTaskName: TextView = itemView.findViewById(R.id.tvTaskName)
+    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvName: TextView = itemView.findViewById(R.id.tvTaskName)
+        val cbDone: CheckBox = itemView.findViewById(R.id.cbTask)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -27,23 +27,26 @@ class TasksAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val item = tasks[position]
+        val task = tasks[position]
 
-        holder.cbTask.setOnCheckedChangeListener(null)
+        holder.tvName.text = task.name
 
-        holder.tvTaskName.text = item.name
-        holder.cbTask.isChecked = item.isDone
+        holder.cbDone.setOnCheckedChangeListener(null)
+        holder.cbDone.isChecked = task.isDone
 
-        holder.cbTask.setOnCheckedChangeListener { _, isChecked ->
-            onTaskToggle(holder.adapterPosition, isChecked)
-        }
-
-        if (item.isDone) {
-            holder.tvTaskName.paintFlags =
-                holder.tvTaskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        if (isReadOnly) {
+            holder.cbDone.isEnabled = false
+            holder.cbDone.isClickable = false
         } else {
-            holder.tvTaskName.paintFlags =
-                holder.tvTaskName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            holder.cbDone.isEnabled = true
+            holder.cbDone.isClickable = true
+
+            holder.cbDone.setOnCheckedChangeListener { _, isChecked ->
+                val adapterPosition = holder.adapterPosition
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    onTaskToggled(adapterPosition, isChecked)
+                }
+            }
         }
     }
 

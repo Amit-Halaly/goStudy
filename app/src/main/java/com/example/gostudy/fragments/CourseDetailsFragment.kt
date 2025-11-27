@@ -17,7 +17,7 @@ import com.example.gostudy.models.Task
 import com.example.gostudy.R
 import com.example.gostudy.adapters.TasksAdapter
 import androidx.appcompat.app.AlertDialog
-import com.example.gostudy.CoursesRepository
+import com.example.gostudy.repositories.CoursesRepository
 import com.example.gostudy.models.Course
 import com.google.firebase.auth.FirebaseAuth
 

@@ -4,19 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.gostudy.fragments.CoursesFragment
-import com.example.gostudy.fragments.FriendsFragment
 import com.example.gostudy.fragments.HomeFragment
+import com.example.gostudy.fragments.UsersFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNav = findViewById(R.id.bottomNav)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
         if (savedInstanceState == null) {
             replaceFragment(HomeFragment())
@@ -32,8 +30,8 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(CoursesFragment())
                     true
                 }
-                R.id.nav_friends -> {
-                    replaceFragment(FriendsFragment())
+                R.id.nav_users -> {
+                    replaceFragment(UsersFragment())
                     true
                 }
                 else -> false
