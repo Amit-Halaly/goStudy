@@ -77,25 +77,37 @@ object CoursesRepository {
             }
     }
 
-    fun deleteCourse(uid: String, course: Course, onComplete: (Boolean) -> Unit) {
-        val courseId = course.id
-        if (courseId.isEmpty()) {
-            onComplete(false)
-            return
-        }
-
-        db.collection("users")
+    fun deleteCourse(uid: String, course: Course, onResult: (Boolean) -> Unit) {
+        val courseDoc = db.collection("users")
             .document(uid)
             .collection("courses")
-            .document(courseId)
-            .delete()
-            .addOnSuccessListener {
-                onComplete(true)
+            .document(course.id)
+
+        courseDoc.collection("tasks")
+            .get()
+            .addOnSuccessListener { tasksSnapshot ->
+                val batch = db.batch()
+
+                for (task in tasksSnapshot.documents) {
+                    batch.delete(task.reference)
+                }
+
+                batch.delete(courseDoc)
+
+                batch.commit()
+                    .addOnSuccessListener {
+                        courses.remove(course)
+                        onResult(true)
+                    }
+                    .addOnFailureListener {
+                        onResult(false)
+                    }
             }
             .addOnFailureListener {
-                onComplete(false)
+                onResult(false)
             }
     }
+
 
 
     fun loadTasksForCourse(uid: String, course: Course, onFinished: () -> Unit) {

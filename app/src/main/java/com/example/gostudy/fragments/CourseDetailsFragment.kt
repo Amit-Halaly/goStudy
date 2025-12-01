@@ -21,10 +21,9 @@ import com.example.gostudy.repositories.CoursesRepository
 import com.example.gostudy.models.Course
 import com.google.firebase.auth.FirebaseAuth
 
-
 class CourseDetailsFragment : Fragment() {
-    private lateinit var auth: FirebaseAuth
 
+    private lateinit var auth: FirebaseAuth
     private var courseIndex: Int = -1
     private lateinit var course: Course
 
@@ -46,11 +45,9 @@ class CourseDetailsFragment : Fragment() {
         }
 
         auth = FirebaseAuth.getInstance()
-
         course = CoursesRepository.courses[courseIndex]
         completedCount = course.completedTasks
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,10 +61,7 @@ class CourseDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnDelete = view.findViewById<Button>(R.id.btnDeleteCourse)
-
-        btnDelete.setOnClickListener {
-            confirmDeleteCourse()
-        }
+        btnDelete.setOnClickListener { confirmDeleteCourse() }
 
         tvTitle = view.findViewById(R.id.tvCourseTitle)
         tvTasksSummary = view.findViewById(R.id.tvTasksSummary)
@@ -80,11 +74,10 @@ class CourseDetailsFragment : Fragment() {
         rvTasks.layoutManager = LinearLayoutManager(requireContext())
         rvTasks.adapter = TasksAdapter(tasksList, ::onTaskToggled)
 
-        btnAddTask.setOnClickListener {
-            showAddTaskDialog()
-        }
+        btnAddTask.setOnClickListener { showAddTaskDialog() }
 
         val uid = auth.currentUser?.uid
+
         if (uid != null) {
             CoursesRepository.loadTasksForCourse(uid, course) {
                 rvTasks.adapter?.notifyDataSetChanged()
@@ -95,15 +88,10 @@ class CourseDetailsFragment : Fragment() {
         }
     }
 
-
     private fun onTaskToggled(position: Int, isChecked: Boolean) {
-        if (position < 0 || position >= tasksList.size) return
+        if (position !in tasksList.indices) return
 
-        val uid = auth.currentUser?.uid
-        if (uid == null) {
-            Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
-            return
-        }
+        val uid = auth.currentUser?.uid ?: return
 
         CoursesRepository.updateTaskStatus(uid, course, position, isChecked)
 
@@ -111,7 +99,6 @@ class CourseDetailsFragment : Fragment() {
         updateProgressUI()
         rvTasks.adapter?.notifyItemChanged(position)
     }
-
 
     @SuppressLint("SetTextI18n")
     private fun updateProgressUI() {
@@ -129,7 +116,7 @@ class CourseDetailsFragment : Fragment() {
 
         val etTaskName = dialogView.findViewById<EditText>(R.id.etTaskName)
 
-        val dialog = AlertDialog.Builder(requireContext())
+        AlertDialog.Builder(requireContext())
             .setTitle("Add New Task")
             .setView(dialogView)
             .setPositiveButton("Add") { _, _ ->
@@ -140,11 +127,7 @@ class CourseDetailsFragment : Fragment() {
                     return@setPositiveButton
                 }
 
-                val uid = auth.currentUser?.uid
-                if (uid == null) {
-                    Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
-                    return@setPositiveButton
-                }
+                val uid = auth.currentUser?.uid ?: return@setPositiveButton
 
                 CoursesRepository.addTaskToCourse(uid, course, name) {
                     rvTasks.adapter?.notifyItemInserted(tasksList.size - 1)
@@ -152,18 +135,14 @@ class CourseDetailsFragment : Fragment() {
                 }
             }
             .setNegativeButton("Cancel", null)
-            .create()
-
-        dialog.show()
+            .show()
     }
 
     private fun confirmDeleteCourse() {
         AlertDialog.Builder(requireContext())
             .setTitle("Delete Course")
             .setMessage("Are you sure you want to delete this course?\nThis action cannot be undone.")
-            .setPositiveButton("Delete") { _, _ ->
-                deleteCourse()
-            }
+            .setPositiveButton("Delete") { _, _ -> deleteCourse() }
             .setNegativeButton("Cancel", null)
             .show()
     }
@@ -175,16 +154,12 @@ class CourseDetailsFragment : Fragment() {
             if (success) {
                 Toast.makeText(requireContext(), "Course deleted", Toast.LENGTH_SHORT).show()
 
-                CoursesRepository.courses.removeAt(courseIndex)
-
                 requireActivity().onBackPressedDispatcher.onBackPressed()
             } else {
                 Toast.makeText(requireContext(), "Failed to delete course", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-
 
     companion object {
         private const val ARG_COURSE_INDEX = "arg_course_index"
@@ -197,4 +172,3 @@ class CourseDetailsFragment : Fragment() {
             }
     }
 }
-
