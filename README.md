@@ -1,6 +1,6 @@
 # GoStudy  
 <p align="center">
-  <img src="images/icon.png" alt="GoStudy Logo" width="100%" height="150px" style="object-fit: contain;" />
+  <img src="images/icon.png" alt="GoStudy Logo" width="100%" height="200px" style="object-fit: contain;" />
 </p>
 
 
