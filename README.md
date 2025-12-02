@@ -1,5 +1,5 @@
 # GoStudy  
-<img src="images/logo.jpg" width="140" alt="GoStudy Logo">
+<img src="images/icon.jpg" width="140" alt="GoStudy Logo">
 
 ---
 
