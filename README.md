@@ -1,5 +1,5 @@
 # GoStudy  
-<img src="images/logo.png" width="140" alt="GoStudy Logo">
+<img src="images/logo.jpg" width="140" alt="GoStudy Logo">
 
 ---
 
@@ -99,7 +99,7 @@ The goal of the project is to provide a simple, clean, modern study planner with
 ---
 
 ## Login & Signup
-<img src="images/login.png" width="300"> | <img src="images/signup.png" width="300">
+<img src="images/login.jpg" width="300"> | <img src="images/signup.jpg" width="300">
 
 
 Users can:
@@ -110,7 +110,7 @@ Users can:
 ---
 
 ## Home Screen
-<img src="images/main_screen.png" width="300">
+<img src="images/main_screen.jpg" width="300">
 
 Shows:
 - GPA  
@@ -121,7 +121,7 @@ Shows:
 ---
 
 ## Courses Screen
-<img src="images/course_screen.png" width="300">
+<img src="images/course_screen.jpg" width="300">
 
 Features:
 - View all your courses  
@@ -133,7 +133,7 @@ Features:
 ---
 
 ## Course Details
-<img src="images/tasks.png" width="300">
+<img src="images/tasks.jpg" width="300">
 
 Inside each course:
 - Add tasks  
@@ -144,7 +144,7 @@ Inside each course:
 ---
 
 ## Users List
-<img src="images/user_main.png" width="300">
+<img src="images/user_main.jpg" width="300">
 
 Shows all registered users (except yourself):
 - Profile image  
@@ -154,7 +154,7 @@ Shows all registered users (except yourself):
 ---
 
 ## User Profile — Home
-<img src="images/user_main.png" width="300"/>
+<img src="images/user_main.jpg" width="300"/>
 
 Read-only view of the selected user:
 - GPA  
@@ -164,7 +164,7 @@ Read-only view of the selected user:
 ---
 
 ## User Profile — Courses
-<img src="images/user_course.png" width="300">
+<img src="images/user_course.jpg" width="300">
 
 You can view:
 - All the user’s courses  
