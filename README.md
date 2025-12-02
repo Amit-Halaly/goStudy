@@ -99,8 +99,8 @@ The goal of the project is to provide a simple, clean, modern study planner with
 ---
 
 ## Login & Signup
-<img src="images/login.png" width="300"/>
-<img src="images/signup.png" width="300"/>
+<img src="images/login.png" width="300"> | <img src="images/signup.png" width="300">
+
 
 Users can:
 - Sign up with name, email, password  
@@ -110,7 +110,7 @@ Users can:
 ---
 
 ## Home Screen
-<img src="images/main_screen.png" width="300"/>
+<img src="images/main_screen.png" width="300">
 
 Shows:
 - GPA  
@@ -121,7 +121,7 @@ Shows:
 ---
 
 ## Courses Screen
-<img src="images/course_screen.png" width="300"/>
+<img src="images/course_screen.png" width="300">
 
 Features:
 - View all your courses  
@@ -133,7 +133,7 @@ Features:
 ---
 
 ## Course Details
-<img src="images/tasks.png" width="300"/>
+<img src="images/tasks.png" width="300">
 
 Inside each course:
 - Add tasks  
@@ -144,7 +144,7 @@ Inside each course:
 ---
 
 ## Users List
-<img src="images/user_main.png" width="300"/>
+<img src="images/user_main.png" width="300">
 
 Shows all registered users (except yourself):
 - Profile image  
@@ -164,7 +164,7 @@ Read-only view of the selected user:
 ---
 
 ## User Profile — Courses
-<img src="images/user_course.png" width="300"/>
+<img src="images/user_course.png" width="300">
 
 You can view:
 - All the user’s courses  
@@ -187,7 +187,7 @@ Ideas for extending the project:
 
 ---
 
-# 📄 Project Details
+# Project Details
 
 | Category | Details |
 |---------|---------|
@@ -203,14 +203,14 @@ Ideas for extending the project:
 
 ---
 
-# 👤 Author
+# Author
 
 **Amit Halaly**  
 Software Engineering Student  
 Afeka College of Engineering  
 
-📧 Email: amithalaly1@gmail.com  
-🐙 GitHub: https://github.com/<Amit-Halaly>
+Email: amithalaly1@gmail.com  
+GitHub: https://github.com/<Amit-Halaly>
 
 ---
 
