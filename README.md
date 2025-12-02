@@ -1,7 +1,8 @@
 # GoStudy  
 <p align="center">
-  <img src="images/icon.png" alt="GoStudy Logo" width="100%" />
+  <img src="images/icon.png" alt="GoStudy Logo" width="100%" height="120px" style="object-fit: contain;" />
 </p>
+
 
 ---
 
