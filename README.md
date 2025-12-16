@@ -200,7 +200,7 @@ Ideas for extending the project:
 | **Authentication** | Firebase Auth |
 | **UI** | XML + RecyclerView + CardView |
 | **Images** | Glide |
-| **Architecture** | Repository-based MVC |
+| **Architecture** | MMV |
 | **Min SDK** | 24 |
 | **Status** | Fully functional |
 
